@@ -26,12 +26,9 @@ class KnowledgeAdapter(private val dataSet: List<Knowledge>) :
     override fun onBindViewHolder(holder: KnowledgeViewHolder, position: Int) {
         val data = dataSet[position]
         holder.title.text = data.name
-//        holder.card.setOnClickListener {
-//            TODO("NOT IMPLEMENTED YET")
-//        }
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return dataSet.size
     }
 }
