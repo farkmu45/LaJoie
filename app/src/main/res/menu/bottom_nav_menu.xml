@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/wallFragment"
+        android:enabled="true"
+        android:icon="@drawable/wall_icons"
+        android:title="Wall"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/knowledgeFragment"
+        android:enabled="true"
+        android:icon="@drawable/knowledge_icons"
+        android:title="Knowledge"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/accountFragment"
+        android:enabled="true"
+        android:icon="@drawable/person_icons"
+        android:title="Profile"
+        app:showAsAction="ifRoom" />
+</menu>
