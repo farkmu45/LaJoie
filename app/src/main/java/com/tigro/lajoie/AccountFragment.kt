@@ -1,17 +1,19 @@
 package com.tigro.lajoie
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
 import com.tigro.lajoie.databinding.FragmentAccountBinding
+import com.tigro.lajoie.screens.auth.AuthViewModel
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
+    private val authViewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,14 +27,15 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.logoutBtn.setOnClickListener {
-            val sharedPref =
-                activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
-            with(sharedPref.edit()) {
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+            with(sharedPref!!.edit()) {
                 putString("token", null)
-                apply()
+                commit()
             }
 
-            findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
     }
 }
