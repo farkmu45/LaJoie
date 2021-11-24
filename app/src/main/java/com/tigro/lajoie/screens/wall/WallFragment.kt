@@ -1,6 +1,7 @@
 package com.tigro.lajoie.screens.wall
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,14 +27,13 @@ class WallFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        wallViewModel.getData(authViewModel.token.toString())
         binding = FragmentWallBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        wallViewModel.getData(authViewModel.token.value.toString())
         binding.apply {
             viewModel = wallViewModel
             lifecycleOwner = viewLifecycleOwner
