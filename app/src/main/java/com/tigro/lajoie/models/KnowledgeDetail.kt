@@ -1,3 +1,9 @@
 package com.tigro.lajoie.models
 
-data class KnowledgeDetail(private val name: String, private val text: String)
+import com.squareup.moshi.Json
+
+data class KnowledgeDetail(
+    @Json(name = "knowledge_id") val id: Int,
+    val name: String,
+    val text: String
+)

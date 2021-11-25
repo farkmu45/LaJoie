@@ -1,14 +1,15 @@
 package com.tigro.lajoie.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.tigro.lajoie.R
 import com.tigro.lajoie.models.Knowledge
+import com.tigro.lajoie.screens.knowledge.KnowledgeFragmentDirections
 
 class KnowledgeAdapter(private val dataSet: List<Knowledge>) :
     RecyclerView.Adapter<KnowledgeAdapter.KnowledgeViewHolder>() {
@@ -26,6 +27,12 @@ class KnowledgeAdapter(private val dataSet: List<Knowledge>) :
     override fun onBindViewHolder(holder: KnowledgeViewHolder, position: Int) {
         val data = dataSet[position]
         holder.title.text = data.name
+
+        holder.card.setOnClickListener {
+            val direction =
+                KnowledgeFragmentDirections.actionKnowledgeFragmentToKnowledgeCategory(dataSet[position].id, dataSet[position].name)
+            it.findNavController().navigate(direction)
+        }
     }
 
     override fun getItemCount(): Int {
