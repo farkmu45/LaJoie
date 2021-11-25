@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-private const val URL = "https://e8cb-125-166-117-198.ngrok.io/uni/LaJoie/"
+private const val URL = "https://lajoie-api.herokuapp.com/"
 
 private val retrofit =
     Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(URL).build()
