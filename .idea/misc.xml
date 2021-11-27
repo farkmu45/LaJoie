@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_knowledge.xml" value="0.1859375" />
         <entry key="app/src/main/res/layout/fragment_knowledge_category.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_knowledge_detail.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_new_question.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_new_wall.xml" value="0.13177083333333334" />

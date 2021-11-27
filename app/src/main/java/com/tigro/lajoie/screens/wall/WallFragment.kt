@@ -1,7 +1,6 @@
 package com.tigro.lajoie.screens.wall
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.tigro.lajoie.R
-import com.tigro.lajoie.WallViewModel
 import com.tigro.lajoie.adapters.WallAdapter
 import com.tigro.lajoie.databinding.FragmentWallBinding
 import com.tigro.lajoie.screens.auth.ApiStatus

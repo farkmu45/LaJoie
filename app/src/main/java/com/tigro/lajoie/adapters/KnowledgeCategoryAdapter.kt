@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tigro.lajoie.R
 import com.tigro.lajoie.models.KnowledgeDetail
+import com.tigro.lajoie.screens.knowledge.KnowledgeCategoryFragmentDirections
 
 class KnowledgeCategoryAdapter(private val dataSet: List<KnowledgeDetail>) :
     RecyclerView.Adapter<KnowledgeCategoryAdapter.KnowledgeCategoryViewHolder>() {
@@ -34,6 +36,10 @@ class KnowledgeCategoryAdapter(private val dataSet: List<KnowledgeDetail>) :
 
         holder.title.text = dataSet[position].name
         holder.subtitle.text = subtitle
+
+        holder.card.setOnClickListener {
+            it.findNavController().navigate(KnowledgeCategoryFragmentDirections.actionKnowledgeCategoryToKnowledgeDetailFragment(position))
+        }
     }
 
     override fun getItemCount(): Int {

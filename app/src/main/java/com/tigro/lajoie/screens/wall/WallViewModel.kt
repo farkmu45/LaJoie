@@ -1,4 +1,4 @@
-package com.tigro.lajoie
+package com.tigro.lajoie.screens.wall
 
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,11 +17,11 @@ import com.tigro.lajoie.adapters.KnowledgeCategoryAdapter
 import com.tigro.lajoie.databinding.FragmentKnowledgeCategoryBinding
 import com.tigro.lajoie.screens.auth.ApiStatus
 
-class KnowledgeCategory : Fragment() {
+class KnowledgeCategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentKnowledgeCategoryBinding
-    private val knowledgeViewModel: KnowledgeViewModel by viewModels()
-    private val args: KnowledgeCategoryArgs by navArgs()
+    private val knowledgeViewModel: KnowledgeViewModel by activityViewModels()
+    private val args: KnowledgeCategoryFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
