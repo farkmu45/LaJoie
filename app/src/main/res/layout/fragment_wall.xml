@@ -5,13 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.tigro.lajoie.screens.wall.WallViewModel" />
-
         <import type="android.view.View" />
-
         <import type="com.tigro.lajoie.screens.auth.ApiStatus" />
     </data>
 

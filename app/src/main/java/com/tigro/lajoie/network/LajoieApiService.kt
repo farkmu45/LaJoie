@@ -15,6 +15,12 @@ private val retrofit =
     Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(URL).build()
 
 interface LajoieApiService {
+    @POST("walls.php")
+    suspend fun sendQuestion(
+        @Header("Authorization") token: String,
+        @Body wallBody: WallBody
+    ): SuccessResponse
+
     @GET("walls.php")
     suspend fun getWalls(@Header("Authorization") token: String): List<Wall>
 
