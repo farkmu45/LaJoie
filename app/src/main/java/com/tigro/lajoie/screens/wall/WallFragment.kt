@@ -39,7 +39,7 @@ class WallFragment : Fragment() {
 
         wallViewModel.status.observe(viewLifecycleOwner, {
             if (it.equals(ApiStatus.SUCCESS)) {
-                binding.recycler.adapter = WallAdapter(wallViewModel.wallData.value)
+                binding.recycler.adapter = WallAdapter(wallViewModel.wallData.value!!)
             }
         })
 

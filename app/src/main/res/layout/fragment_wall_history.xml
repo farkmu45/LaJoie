@@ -13,11 +13,13 @@
         <import type="android.view.View" />
 
         <import type="com.tigro.lajoie.screens.auth.ApiStatus" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".screens.wall.WallHistoryFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar_container"
@@ -29,8 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:menu="@menu/wall_options"
-                app:title="Wall" />
+                tools:title="test" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -40,12 +41,10 @@
             android:fillViewport="true"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                tools:context=".screens.wall.WallFragment">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/loading"
@@ -58,53 +57,41 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <TextView
-                    android:id="@+id/greet"
+                    android:id="@+id/history"
+                    style="@style/TextAppearance.Material3.HeadlineMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello Fark!"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
+                    android:text="History"
                     android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/greet_detail"
+                    android:id="@+id/history_last_updated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="You still can ask 3 more question"
+                    android:layout_marginStart="16dp"
+                    android:text="Last updated 3 mins ago"
                     android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/greet" />
-
+                    app:layout_constraintTop_toBottomOf="@id/history" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler"
+                    android:id="@+id/recycler_history"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="32dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:nestedScrollingEnabled="false"
-                    android:visibility="@{viewModel.status == ApiStatus.SUCCESS ? View.VISIBLE : View.INVISIBLE}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/greet_detail"
-                    tools:listitem="@layout/wall_item" />
-
-
+                    android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/history_last_updated"
+                    tools:listitem="@layout/history_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="24dp"
-            android:text="Ask Question"
-            android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
-            app:icon="@drawable/ic_add"
-            app:layout_anchorGravity="bottom|right|end"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
+
+

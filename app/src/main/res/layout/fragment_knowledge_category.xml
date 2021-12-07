@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.tigro.lajoie.screens.knowledge.KnowledgeViewModel" />
+
         <import type="android.view.View" />
+
         <import type="com.tigro.lajoie.screens.auth.ApiStatus" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".screens.knowledge.KnowledgeCategoryFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar_container"
@@ -56,8 +60,8 @@
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/material_list_item_two_line"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:listitem="@layout/material_list_item_two_line" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

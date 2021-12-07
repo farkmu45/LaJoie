@@ -29,7 +29,9 @@
         <entry key="app/src/main/res/layout/fragment_wall_detail.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_wall_draft.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_draft_detail.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/fragment_wall_history.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_sent.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/history_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/knowledge_item.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/material_list_item_two_line.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/wall_fragment.xml" value="0.25677083333333334" />

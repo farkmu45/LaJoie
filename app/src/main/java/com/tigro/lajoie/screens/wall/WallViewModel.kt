@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tigro.lajoie.models.History
 import com.tigro.lajoie.models.Wall
 import com.tigro.lajoie.network.LajoieApi
 import com.tigro.lajoie.network.WallBody
@@ -15,6 +16,9 @@ class WallViewModel() : ViewModel() {
 
     private val _wallData = MutableLiveData<List<Wall>>()
     val wallData: LiveData<List<Wall>> = _wallData
+
+    private val _historyData = MutableLiveData<List<History>>()
+    val historyData: LiveData<List<History>> = _historyData
 
     private val _status = MutableLiveData(ApiStatus.INIT)
     val status: LiveData<ApiStatus> = _status
@@ -42,6 +46,21 @@ class WallViewModel() : ViewModel() {
                 LajoieApi.retrofitService.sendQuestion(
                     "Basic $token",
                     WallBody(title.value.toString(), detail.value.toString())
+                )
+                _status.value = ApiStatus.SUCCESS
+            } catch (e: Exception) {
+                Log.d("Error", e.message.toString())
+                _status.value = ApiStatus.FAILED
+            }
+        }
+    }
+
+    fun getHistory(token: String) {
+        viewModelScope.launch {
+            try {
+                _status.value = ApiStatus.LOADING
+                _historyData.value = LajoieApi.retrofitService.getHistory(
+                    "Basic $token"
                 )
                 _status.value = ApiStatus.SUCCESS
             } catch (e: Exception) {

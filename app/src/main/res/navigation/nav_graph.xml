@@ -15,7 +15,7 @@
             app:destination="@id/newQuestionFragment" />
         <action
             android:id="@+id/action_wallFragment_to_wallDraftFragment"
-            app:destination="@id/wallDraftFragment" />
+            app:destination="@id/wallHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/knowledgeFragment"
@@ -37,10 +37,10 @@
         android:label=""
         tools:layout="@layout/fragment_wall_create" />
     <fragment
-        android:id="@+id/wallDraftFragment"
-        android:name="com.tigro.lajoie.screens.wall.WallDraftFragment"
+        android:id="@+id/wallHistoryFragment"
+        android:name="com.tigro.lajoie.screens.wall.WallHistoryFragment"
         android:label=""
-        tools:layout="@layout/fragment_wall_draft" />
+        tools:layout="@layout/fragment_wall_history" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.tigro.lajoie.screens.auth.LoginFragment"
@@ -67,7 +67,8 @@
     </fragment>
     <fragment
         android:id="@+id/knowledgeCategory"
-        android:name="com.tigro.lajoie.screens.knowledge.KnowledgeCategoryFragment">
+        android:name="com.tigro.lajoie.screens.knowledge.KnowledgeCategoryFragment"
+        tools:layout="@layout/fragment_knowledge_category">
         <argument
             android:name="knowledgeId"
             app:argType="integer" />
@@ -81,7 +82,8 @@
     <fragment
         android:id="@+id/knowledgeDetailFragment"
         android:name="com.tigro.lajoie.screens.knowledge.KnowledgeDetailFragment"
-        android:label="" >
+        android:label=""
+        tools:layout="@layout/fragment_knowledge_detail">
         <argument
             android:name="knowledgeIndex"
             app:argType="integer" />
