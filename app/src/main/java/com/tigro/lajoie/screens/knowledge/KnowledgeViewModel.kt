@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.tigro.lajoie.models.Knowledge
 import com.tigro.lajoie.models.KnowledgeDetail
 import com.tigro.lajoie.network.LajoieApi
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 import kotlinx.coroutines.launch
 
 class KnowledgeViewModel() : ViewModel() {

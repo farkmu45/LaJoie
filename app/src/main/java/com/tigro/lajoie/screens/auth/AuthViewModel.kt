@@ -7,9 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tigro.lajoie.network.LajoieApi
 import com.tigro.lajoie.network.LoginBody
+import com.tigro.lajoie.utils.ApiStatus
 import kotlinx.coroutines.launch
-
-enum class ApiStatus { LOADING, SUCCESS, FAILED, INIT }
 
 class AuthViewModel : ViewModel() {
 

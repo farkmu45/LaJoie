@@ -9,7 +9,7 @@ import com.tigro.lajoie.models.History
 import com.tigro.lajoie.models.Wall
 import com.tigro.lajoie.network.LajoieApi
 import com.tigro.lajoie.network.WallBody
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 import kotlinx.coroutines.launch
 
 class WallViewModel() : ViewModel() {
