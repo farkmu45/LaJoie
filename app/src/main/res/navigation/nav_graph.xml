@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_wall">
         <action
             android:id="@+id/action_wallFragment_to_newQuestionFragment"
-            app:destination="@id/newQuestionFragment" />
+            app:destination="@id/wallCreateFragment" />
         <action
             android:id="@+id/action_wallFragment_to_wallDraftFragment"
             app:destination="@id/wallHistoryFragment" />
@@ -32,10 +32,16 @@
         android:label="Account"
         tools:layout="@layout/fragment_account"></fragment>
     <fragment
-        android:id="@+id/newQuestionFragment"
+        android:id="@+id/wallCreateFragment"
         android:name="com.tigro.lajoie.screens.wall.WallCreateFragment"
         android:label=""
-        tools:layout="@layout/fragment_wall_create" />
+        tools:layout="@layout/fragment_wall_create">
+        <action
+            android:id="@+id/action_wallCreateFragment_to_wallFragment"
+            app:destination="@id/wallFragment"
+            app:popUpTo="@id/wallFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/wallHistoryFragment"
         android:name="com.tigro.lajoie.screens.wall.WallHistoryFragment"

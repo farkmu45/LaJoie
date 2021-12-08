@@ -9,7 +9,7 @@ import com.google.android.material.card.MaterialCardView
 import com.tigro.lajoie.R
 import com.tigro.lajoie.models.Wall
 
-class WallAdapter(private val dataset: List<Wall>) :
+class WallAdapter(private val dataSet: List<Wall>) :
     RecyclerView.Adapter<WallAdapter.WallViewHolder>() {
     class WallViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.title)
@@ -26,16 +26,21 @@ class WallAdapter(private val dataset: List<Wall>) :
     }
 
     override fun onBindViewHolder(holder: WallViewHolder, position: Int) {
-        val item = dataset[position]
+        val item = dataSet[position]
+
+        var text = dataSet[position].detail
+
+        if (text.length > 80) {
+            text = dataSet[position].detail.take(80) + "..."
+        }
 
         holder.apply {
             title.text = item.title
-            detail.text = item.detail
+            detail.text = text
             time.text = item.createdAt
             username.text = item.username
 
             card.setOnClickListener {
-
 
 
             }
@@ -43,6 +48,6 @@ class WallAdapter(private val dataset: List<Wall>) :
 
     }
 
-    override fun getItemCount(): Int = dataset.size
+    override fun getItemCount(): Int = dataSet.size
 
 }

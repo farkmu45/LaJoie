@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentWallCreateBinding
 import com.tigro.lajoie.screens.auth.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
@@ -43,9 +44,8 @@ class WallCreateFragment : Fragment() {
             when {
                 it.equals(ApiStatus.SUCCESS) -> {
                     dialog.dismiss()
+                    findNavController().navigate(R.id.action_wallCreateFragment_to_wallFragment)
                     Toast.makeText(context, "Question sent", Toast.LENGTH_LONG).show()
-                    wallViewModel.title.value = ""
-                    wallViewModel.detail.value = ""
                 }
                 it.equals(ApiStatus.FAILED) -> {
                     dialog.dismiss()
