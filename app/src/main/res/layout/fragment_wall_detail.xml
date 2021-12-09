@@ -9,10 +9,7 @@
             name="viewModel"
             type="com.tigro.lajoie.screens.wall.WallViewModel" />
 
-        <variable
-            name="ApiStatus"
-            type="com.tigro.lajoie.utils.ApiStatus" />
-
+        <import type="com.tigro.lajoie.utils.ApiStatus"/>
         <import type="android.view.View" />
     </data>
 
