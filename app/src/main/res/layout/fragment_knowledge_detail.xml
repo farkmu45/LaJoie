@@ -10,9 +10,9 @@
             name="viewModel"
             type="com.tigro.lajoie.screens.knowledge.KnowledgeViewModel" />
 
-        <variable
-            name="knowledgeFragment"
-            type="com.tigro.lajoie.screens.knowledge.KnowledgeDetailFragment" />
+      <variable
+          name="knowledgeIndex"
+          type="Integer" />
 
         <import type="android.view.View" />
     </data>
@@ -50,7 +50,7 @@
                     style="@style/TextAppearance.Material3.DisplayMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.knowledgeDetailData[viewModel.knowledgePosition].name}"
+                    android:text="@{viewModel.knowledgeDetailData[knowledgeIndex].name}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Apa itu psikologi" />
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@{viewModel.knowledgeDetailData[viewModel.knowledgePosition].text}"
+                    android:text="@{viewModel.knowledgeDetailData[knowledgeIndex].text}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Lorem ipsum dolor sit amet dsafkjaslfk" />

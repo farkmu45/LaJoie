@@ -22,7 +22,6 @@ class KnowledgeViewModel() : ViewModel() {
     private val _status = MutableLiveData(ApiStatus.LOADING)
     val status: LiveData<ApiStatus> = _status
 
-    val knowledgePosition = MutableLiveData(0)
 
     fun getData() {
         viewModelScope.launch {

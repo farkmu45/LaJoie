@@ -34,9 +34,8 @@ class KnowledgeDetailFragment : Fragment() {
         binding.apply {
             viewModel = knowledgeViewModel
             lifecycleOwner = viewLifecycleOwner
+            knowledgeIndex = args.knowledgeIndex
         }
-
-        knowledgeViewModel.knowledgePosition.value = args.knowledgeIndex
     }
 
 }
