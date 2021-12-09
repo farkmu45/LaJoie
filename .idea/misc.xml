@@ -26,7 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_create.xml" value="0.25677083333333334" />
-        <entry key="app/src/main/res/layout/fragment_wall_detail.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_wall_detail.xml" value="0.2635416666666667" />
         <entry key="app/src/main/res/layout/fragment_wall_draft.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_draft_detail.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_history.xml" value="0.25677083333333334" />
