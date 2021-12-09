@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentLoginBinding
+import com.tigro.lajoie.utils.ApiStatus
 
 class LoginFragment : Fragment() {
 

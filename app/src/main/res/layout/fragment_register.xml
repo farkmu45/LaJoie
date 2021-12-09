@@ -13,7 +13,7 @@
             type="com.tigro.lajoie.screens.auth.RegisterFragment" />
 
         <import type="android.view.View" />
-        <import type="com.tigro.lajoie.screens.auth.ApiStatus"/>
+        <import type="com.tigro.lajoie.utils.ApiStatus"/>
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"

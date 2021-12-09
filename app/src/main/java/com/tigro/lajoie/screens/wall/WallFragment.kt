@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.tigro.lajoie.R
 import com.tigro.lajoie.adapters.WallAdapter
 import com.tigro.lajoie.databinding.FragmentWallBinding
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
 
 class WallFragment : Fragment() {

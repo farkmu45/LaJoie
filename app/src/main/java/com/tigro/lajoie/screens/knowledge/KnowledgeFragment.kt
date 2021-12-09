@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.tigro.lajoie.adapters.KnowledgeAdapter
 import com.tigro.lajoie.databinding.FragmentKnowledgeBinding
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 
 class KnowledgeFragment : Fragment() {
     private lateinit var binding: FragmentKnowledgeBinding

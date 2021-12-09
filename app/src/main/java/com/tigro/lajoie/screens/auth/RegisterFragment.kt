@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentRegisterBinding
+import com.tigro.lajoie.utils.ApiStatus
 
 
 class RegisterFragment : Fragment() {

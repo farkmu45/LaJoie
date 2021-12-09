@@ -15,7 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.tigro.lajoie.R
 import com.tigro.lajoie.adapters.KnowledgeCategoryAdapter
 import com.tigro.lajoie.databinding.FragmentKnowledgeCategoryBinding
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 
 class KnowledgeCategoryFragment : Fragment() {
 

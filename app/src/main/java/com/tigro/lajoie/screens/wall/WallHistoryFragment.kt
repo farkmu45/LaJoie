@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tigro.lajoie.adapters.HistoryAdapter
 import com.tigro.lajoie.databinding.FragmentWallHistoryBinding
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
 
 

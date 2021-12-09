@@ -15,7 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentWallCreateBinding
-import com.tigro.lajoie.screens.auth.ApiStatus
+import com.tigro.lajoie.utils.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
 
 class WallCreateFragment : Fragment() {
