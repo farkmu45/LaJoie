@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/person_icons.xml" value="0.27291666666666664" />
         <entry key="app/src/main/res/drawable/wall_icons.xml" value="0.27291666666666664" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/comment_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.1859375" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_knowledge.xml" value="0.1859375" />

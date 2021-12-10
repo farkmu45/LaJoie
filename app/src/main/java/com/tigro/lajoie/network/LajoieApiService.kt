@@ -21,6 +21,12 @@ interface LajoieApiService {
         @Body wallBody: WallBody
     ): SuccessResponse
 
+    @GET("walls.php")
+    suspend fun getResponses(
+        @Header("Authorization") token: String,
+        @Query("id") id: Int
+    ): List<Comment>
+
     @GET("history.php")
     suspend fun getHistory(@Header("Authorization") token: String): List<History>
 
