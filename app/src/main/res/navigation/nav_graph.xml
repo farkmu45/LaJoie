@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_wallFragment_to_wallDraftFragment"
             app:destination="@id/wallHistoryFragment" />
+        <action
+            android:id="@+id/action_wallFragment_to_wallDetailFragment"
+            app:destination="@id/wallDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/knowledgeFragment"
@@ -90,6 +93,15 @@
         android:name="com.tigro.lajoie.screens.knowledge.KnowledgeDetailFragment"
         android:label=""
         tools:layout="@layout/fragment_knowledge_detail">
+        <argument
+            android:name="knowledgeIndex"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/wallDetailFragment"
+        tools:layout="@layout/fragment_wall_detail"
+        android:name="com.tigro.lajoie.screens.wall.WallDetailFragment"
+        android:label="" >
         <argument
             android:name="knowledgeIndex"
             app:argType="integer" />

@@ -17,7 +17,7 @@ import com.tigro.lajoie.screens.auth.AuthViewModel
 class WallFragment : Fragment() {
 
     private lateinit var binding: FragmentWallBinding
-    private val wallViewModel: WallViewModel by viewModels()
+    private val wallViewModel: WallViewModel by activityViewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
