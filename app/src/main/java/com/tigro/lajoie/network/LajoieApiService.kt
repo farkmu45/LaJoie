@@ -15,6 +15,8 @@ private val retrofit =
     Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(URL).build()
 
 interface LajoieApiService {
+
+    // Wall related requests
     @POST("walls.php")
     suspend fun sendQuestion(
         @Header("Authorization") token: String,
@@ -22,23 +24,26 @@ interface LajoieApiService {
     ): SuccessResponse
 
     @GET("walls.php")
+    suspend fun getWalls(@Header("Authorization") token: String): List<Wall>
+
+    @GET("history.php")
+    suspend fun getHistory(@Header("Authorization") token: String): List<History>
+
+    // Comment related requests
+    @GET("walls.php")
     suspend fun getResponses(
         @Header("Authorization") token: String,
         @Query("id") id: Int
     ): List<Comment>
 
-    @GET("history.php")
-    suspend fun getHistory(@Header("Authorization") token: String): List<History>
-
-    @GET("walls.php")
-    suspend fun getWalls(@Header("Authorization") token: String): List<Wall>
-
+    // Knowledge related requests
     @GET("knowledges.php")
     suspend fun getKnowledges(): List<Knowledge>
 
     @GET("knowledges.php")
     suspend fun getKnowledgeDetail(@Query("id") id: Int): List<KnowledgeDetail>
 
+    // Auth related requests
     @POST("login.php")
     suspend fun login(@Body loginBody: LoginBody): AuthToken
 
