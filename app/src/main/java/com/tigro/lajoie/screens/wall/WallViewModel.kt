@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.tigro.lajoie.models.Comment
 import com.tigro.lajoie.models.History
 import com.tigro.lajoie.models.Wall
+import com.tigro.lajoie.network.CommentBody
 import com.tigro.lajoie.network.LajoieApi
 import com.tigro.lajoie.network.WallBody
 import com.tigro.lajoie.utils.ApiStatus
@@ -27,8 +28,13 @@ class WallViewModel() : ViewModel() {
     private val _status = MutableLiveData(ApiStatus.INIT)
     val status: LiveData<ApiStatus> = _status
 
+    private val _commentStatus = MutableLiveData(ApiStatus.INIT)
+    val commentStatus: LiveData<ApiStatus> = _commentStatus
+
     val title = MutableLiveData("")
     val detail = MutableLiveData("")
+
+    val comment = MutableLiveData("")
 
     fun getData(token: String) {
         viewModelScope.launch {
@@ -85,6 +91,22 @@ class WallViewModel() : ViewModel() {
             } catch (e: Exception) {
                 Log.d("Error", e.message.toString())
                 _status.value = ApiStatus.FAILED
+            }
+        }
+    }
+
+    fun addResponse(token: String, id: Int) {
+        viewModelScope.launch {
+            try {
+                _commentStatus.value = ApiStatus.LOADING
+                LajoieApi.retrofitService.addResponse(
+                    CommentBody(comment.value!!), "Basic $token", id
+                )
+                _commentStatus.value = ApiStatus.SUCCESS
+                _commentStatus.value = ApiStatus.INIT
+            } catch (e: Exception) {
+                Log.d("Error", e.message.toString())
+                _commentStatus.value = ApiStatus.FAILED
             }
         }
     }

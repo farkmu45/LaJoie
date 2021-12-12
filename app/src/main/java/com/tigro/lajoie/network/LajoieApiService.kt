@@ -36,6 +36,13 @@ interface LajoieApiService {
         @Query("id") id: Int
     ): List<Comment>
 
+    @POST("walls.php")
+    suspend fun addResponse(
+        @Body commentBody: CommentBody,
+        @Header("Authorization") token: String,
+        @Query("id") id: Int
+    )
+
     // Knowledge related requests
     @GET("knowledges.php")
     suspend fun getKnowledges(): List<Knowledge>

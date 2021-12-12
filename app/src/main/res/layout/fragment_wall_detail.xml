@@ -153,16 +153,24 @@
                     android:gravity="top"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:text="@={viewModel.comment}"
+                    tools:ignore="LabelFor" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_comment_submit"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
-                    android:background="?colorPrimary">
+                    android:background="?colorPrimary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    tools:ignore="UnusedAttribute">
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:contentDescription="Send comment"
                         android:src="@drawable/ic_send"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
