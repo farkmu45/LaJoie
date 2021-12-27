@@ -33,7 +33,6 @@ class WallViewModel() : ViewModel() {
 
     val title = MutableLiveData("")
     val detail = MutableLiveData("")
-
     val comment = MutableLiveData("")
 
     fun getData(token: String) {

@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,7 +12,9 @@
         android:id="@+id/mtrl_list_item_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp" />
+        android:layout_centerVertical="true"
+        android:padding="16dp"
+        tools:src="@drawable/ic_send" />
 
     <TextView
         android:id="@+id/mtrl_list_item_text"
@@ -21,7 +24,8 @@
         android:maxLines="1"
         android:paddingTop="16dp"
         android:paddingEnd="16dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        tools:text="Setting" />
 
     <TextView
         android:id="@+id/mtrl_list_item_secondary_text"
@@ -34,6 +38,7 @@
         android:paddingEnd="16dp"
         android:paddingBottom="16dp"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="@color/mtrl_list_item_tint" />
+        android:textColor="@color/mtrl_list_item_tint"
+        tools:text="Configuration for your device lol" />
 
 </RelativeLayout>

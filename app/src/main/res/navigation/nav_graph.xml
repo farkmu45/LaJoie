@@ -31,9 +31,13 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.tigro.lajoie.AccountFragment"
+        android:name="com.tigro.lajoie.screens.account.AccountFragment"
         android:label="Account"
-        tools:layout="@layout/fragment_account"></fragment>
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_accountFragment_to_submissionFragment"
+            app:destination="@id/submissionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wallCreateFragment"
         android:name="com.tigro.lajoie.screens.wall.WallCreateFragment"
@@ -99,11 +103,16 @@
     </fragment>
     <fragment
         android:id="@+id/wallDetailFragment"
-        tools:layout="@layout/fragment_wall_detail"
         android:name="com.tigro.lajoie.screens.wall.WallDetailFragment"
-        android:label="" >
+        android:label=""
+        tools:layout="@layout/fragment_wall_detail">
         <argument
             android:name="knowledgeIndex"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/submissionFragment"
+        android:name="com.tigro.lajoie.screens.submission.SubmissionFragment"
+        android:label=""
+        tools:layout="@layout/fragment_submission" />
 </navigation>

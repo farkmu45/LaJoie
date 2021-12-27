@@ -3,6 +3,8 @@ package com.tigro.lajoie.models
 import com.squareup.moshi.Json
 
 data class Comment(
+    val id: Int,
+    val picture: String?,
     val username: String,
     val comment: String,
     @Json(name = "created_at") val createdAt: String,

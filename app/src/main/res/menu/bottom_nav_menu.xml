@@ -19,6 +19,6 @@
         android:id="@+id/accountFragment"
         android:enabled="true"
         android:icon="@drawable/person_icons"
-        android:title="Profile"
+        android:title="Account"
         app:showAsAction="ifRoom" />
 </menu>

@@ -60,13 +60,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/profile"
+                        profileUrl="@{viewModel.wallData[wallIndex].picture}"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/ic_person" />
+                        app:shapeAppearance="@style/CircleImageView" />
 
 
                     <TextView
@@ -83,9 +84,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.wallData[wallIndex].createdAt}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@id/name"
+                        app:prettyDate="@{viewModel.wallData[wallIndex].createdAt}"
                         tools:text="39 mins ago" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -123,6 +124,7 @@
                     android:layout_marginTop="32dp"
                     android:nestedScrollingEnabled="false"
                     android:visibility="@{viewModel.status == ApiStatus.SUCCESS ? View.VISIBLE : View.INVISIBLE}"
+                    app:listComment="@{viewModel.commentData}"
                     tools:listitem="@layout/comment_item" />
 
             </LinearLayout>

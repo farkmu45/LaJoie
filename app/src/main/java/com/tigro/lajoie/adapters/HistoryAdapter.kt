@@ -1,39 +1,45 @@
 package com.tigro.lajoie.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tigro.lajoie.R
+import com.tigro.lajoie.databinding.HistoryItemBinding
 import com.tigro.lajoie.models.History
 
-class HistoryAdapter(private val dataSet: List<History>) :
-    RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
-    class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val container: ConstraintLayout = view.findViewById(R.id.history_container)
-        val title: TextView = view.findViewById(R.id.history_title)
-        val status: TextView = view.findViewById(R.id.history_status)
-        val detail: TextView = view.findViewById(R.id.history_detail)
-    }
+class HistoryAdapter : ListAdapter<History, HistoryAdapter.HistoryViewHolder>(DiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        val historyLayout =
-            LayoutInflater.from(parent.context).inflate(R.layout.history_item, parent, false)
-        return HistoryViewHolder(historyLayout)
-    }
-
-    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.apply {
-            title.text = dataSet[position].title
-            detail.text = dataSet[position].detail
-            status.text = dataSet[position].status
+    class HistoryViewHolder(private var binding: HistoryItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(history: History) {
+            binding.history = history
+            binding.executePendingBindings()
         }
     }
 
-    override fun getItemCount(): Int {
-        return dataSet.size
+    companion object DiffCallback : DiffUtil.ItemCallback<History>() {
+        override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: History, newItem: History): Boolean {
+            return oldItem.detail == newItem.detail
+        }
+
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+        return HistoryViewHolder(
+            HistoryItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
 }

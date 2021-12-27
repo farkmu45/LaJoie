@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">LaJoie</string>
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="uploadcare_public_key" translatable="false">574887dd15eae2ede6e6</string>
+    <string name="uploadcare_private_key" translatable="false">62ecefc595036cc43f33</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

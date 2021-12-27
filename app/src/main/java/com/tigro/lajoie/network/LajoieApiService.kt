@@ -52,10 +52,30 @@ interface LajoieApiService {
 
     // Auth related requests
     @POST("login.php")
-    suspend fun login(@Body loginBody: LoginBody): AuthToken
+    suspend fun login(@Body loginBody: LoginBody): User
 
     @POST("register.php")
     suspend fun register(@Body registerBody: RegisterBody): SuccessResponse
+
+    @GET("profile.php")
+    suspend fun getUser(@Header("Authorization") token: String): User
+
+    // Submission related request
+    @POST("submission.php")
+    suspend fun sendSubmission(
+        @Body submissionBody: SubmissionBody,
+        @Header("Authorization") token: String
+
+    )
+
+    @Headers(
+        "Accept: application/vnd.uploadcare-v0.5+json",
+        "Authorization: Uploadcare.Simple 574887dd15eae2ede6e6:62ecefc595036cc43f33"
+    )
+    @DELETE()
+    suspend fun deleteImage(
+        @Url ucareURL: String
+    )
 }
 
 object LajoieApi {

@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.tigro.lajoie.R
 import com.tigro.lajoie.adapters.WallAdapter
 import com.tigro.lajoie.databinding.FragmentWallBinding
-import com.tigro.lajoie.utils.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
 
 class WallFragment : Fragment() {
@@ -20,28 +19,28 @@ class WallFragment : Fragment() {
     private val wallViewModel: WallViewModel by activityViewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        binding = FragmentWallBinding.inflate(inflater, container, false)
+        if (wallViewModel.wallData.value.isNullOrEmpty()) {
+            wallViewModel.getData(authViewModel.token.value.toString())
+        }
+        binding = FragmentWallBinding.inflate(inflater)
+        binding.viewModel = wallViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        val wallAdapter = WallAdapter()
+
+        binding.recycler.adapter = wallAdapter
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        wallViewModel.getData(authViewModel.token.value.toString())
-        binding.apply {
-            viewModel = wallViewModel
-            lifecycleOwner = viewLifecycleOwner
-        }
-
-        wallViewModel.status.observe(viewLifecycleOwner, {
-            if (it.equals(ApiStatus.SUCCESS)) {
-                binding.recycler.adapter = WallAdapter(wallViewModel.wallData.value!!)
-            }
-        })
 
         binding.addBtn.setOnClickListener {
             findNavController().navigate(R.id.action_wallFragment_to_newQuestionFragment)

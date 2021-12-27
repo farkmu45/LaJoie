@@ -7,5 +7,6 @@ data class Wall(
     @Json(name = "created_at") val createdAt: String,
     val title: String,
     val detail: String,
-    val username: String
+    val username: String,
+    val picture: String?
 )

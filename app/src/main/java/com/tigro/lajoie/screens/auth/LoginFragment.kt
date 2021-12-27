@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentLoginBinding
 import com.tigro.lajoie.utils.ApiStatus
@@ -24,7 +25,7 @@ class LoginFragment : Fragment() {
     ): View {
         if (checkLogin()) {
             authViewModel.setToken(getToken())
-            Log.d("TOKEN", authViewModel.token.value.toString())
+            authViewModel.setProfile(getToken())
             findNavController().navigate(R.id.action_loginFragment_to_wallFragment)
         }
         binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -41,10 +42,20 @@ class LoginFragment : Fragment() {
 
         authViewModel.status.observe(viewLifecycleOwner, {
             if (it.equals(ApiStatus.SUCCESS)) {
-                saveToken(authViewModel.token.value.toString())
-                findNavController().navigate(R.id.action_loginFragment_to_wallFragment)
+                if (authViewModel.user.value!!.status == "SUSPENDED") {
+                    MaterialAlertDialogBuilder(context!!)
+                        .setTitle("Login failed")
+                        .setMessage("Your account is suspended until your document is validated")
+                        .setPositiveButton("Ok") { _, _ ->
+                        }.show()
+                } else {
+                    saveToken(authViewModel.token.value.toString())
+                    findNavController().navigate(R.id.action_loginFragment_to_wallFragment)
+                }
+
             }
         })
+
 
         binding.registerBtn.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)

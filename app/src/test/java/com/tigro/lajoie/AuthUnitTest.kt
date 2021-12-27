@@ -1,6 +1,6 @@
 package com.tigro.lajoie
 
-import com.tigro.lajoie.models.AuthToken
+import com.tigro.lajoie.models.User
 import com.tigro.lajoie.network.LajoieApi
 import com.tigro.lajoie.network.LoginBody
 import kotlinx.coroutines.Dispatchers
@@ -83,6 +83,6 @@ class AuthUnitTest {
     @Test
     fun `logging in using valid credentials will send the token`() = runBlocking {
         val token = LajoieApi.retrofitService.login(LoginBody("fark@gmail.com", "maulana123"))
-        assertEquals(AuthToken("ZmFya0BnbWFpbC5jb206bWF1bGFuYTEyMw=="), token)
+        assertEquals(User("ZmFya0BnbWFpbC5jb206bWF1bGFuYTEyMw=="), token)
     }
 }

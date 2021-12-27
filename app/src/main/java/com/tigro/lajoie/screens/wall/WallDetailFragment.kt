@@ -40,19 +40,16 @@ class WallDetailFragment : Fragment() {
         val index = args.knowledgeIndex
         val wallId = wallDetailViewModel.wallData.value!![index].id
 
-        wallDetailViewModel.status.observe(viewLifecycleOwner, {
-            if (it.equals(ApiStatus.SUCCESS)) {
-                val layoutManager = LinearLayoutManager(context)
-                val dividerItemDecoration = DividerItemDecoration(
-                    binding.recyclerComment.context,
-                    layoutManager.orientation
-                )
-                binding.recyclerComment.addItemDecoration(dividerItemDecoration)
-                binding.recyclerComment.adapter =
-                    CommentAdapter(wallDetailViewModel.commentData.value!!)
-                binding.recyclerComment.layoutManager = layoutManager
-            }
-        })
+        wallDetailViewModel.getResponses(authViewModel.token.value!!, wallId)
+
+        val layoutManager = LinearLayoutManager(context)
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.recyclerComment.context,
+            layoutManager.orientation
+        )
+        binding.recyclerComment.addItemDecoration(dividerItemDecoration)
+        binding.recyclerComment.adapter = CommentAdapter()
+        binding.recyclerComment.layoutManager = layoutManager
 
         val dialog: AlertDialog =
             MaterialAlertDialogBuilder(context!!).setMessage("Submitting...")
@@ -85,8 +82,5 @@ class WallDetailFragment : Fragment() {
                 }
             }
         }
-
-
-        wallDetailViewModel.getResponses(authViewModel.token.value!!, wallId)
     }
 }

@@ -20,23 +20,30 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(R.layout.activity_main)
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav)
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
+
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
-
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.wallFragment || destination.id == R.id.knowledgeFragment
-                || destination.id == R.id.accountFragment
-            ) {
-                bottomNavigationView.visibility = View.VISIBLE
-            } else {
-                bottomNavigationView.visibility = View.GONE
+            when (destination.id) {
+                R.id.wallFragment -> {
+                    bottomNavigationView.visibility = View.VISIBLE
+                }
+                R.id.knowledgeFragment -> {
+                    bottomNavigationView.visibility = View.VISIBLE
+                }
+                R.id.accountFragment -> {
+                    bottomNavigationView.visibility = View.VISIBLE
+                }
+                else -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
             }
         }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tigro.lajoie.adapters.HistoryAdapter
 import com.tigro.lajoie.databinding.FragmentWallHistoryBinding
-import com.tigro.lajoie.utils.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
 
 
@@ -27,7 +26,25 @@ class WallHistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWallHistoryBinding.inflate(inflater, container, false)
+        binding = FragmentWallHistoryBinding.inflate(inflater)
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = historyViewModel
+        }
+
+        if (historyViewModel.historyData.value.isNullOrEmpty()) {
+            historyViewModel.getHistory(authViewModel.token.value!!)
+        }
+
+        val layoutManager = LinearLayoutManager(context)
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.recyclerHistory.context,
+            layoutManager.orientation
+        )
+        binding.recyclerHistory.addItemDecoration(dividerItemDecoration)
+        binding.recyclerHistory.adapter = HistoryAdapter()
+        binding.recyclerHistory.layoutManager = layoutManager
+
         return binding.root
     }
 
@@ -35,25 +52,5 @@ class WallHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setupWithNavController(findNavController())
 
-        historyViewModel.getHistory(authViewModel.token.value!!)
-
-        historyViewModel.status.observe(viewLifecycleOwner, {
-            if (it.equals(ApiStatus.SUCCESS)) {
-                val layoutManager = LinearLayoutManager(context)
-                val dividerItemDecoration = DividerItemDecoration(
-                    binding.recyclerHistory.context,
-                    layoutManager.orientation
-                )
-                binding.recyclerHistory.addItemDecoration(dividerItemDecoration)
-                binding.recyclerHistory.adapter =
-                    HistoryAdapter(historyViewModel.historyData.value!!)
-                binding.recyclerHistory.layoutManager = layoutManager
-            }
-        })
-
-        binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = historyViewModel
-        }
     }
 }
