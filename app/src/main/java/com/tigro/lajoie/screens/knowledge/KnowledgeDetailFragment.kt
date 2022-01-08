@@ -1,6 +1,7 @@
 package com.tigro.lajoie.screens.knowledge
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class KnowledgeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setupWithNavController(findNavController())
+        binding.knowledgeDetail.movementMethod = LinkMovementMethod.getInstance()
     }
 
 }
