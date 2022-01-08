@@ -42,8 +42,6 @@
         android:paddingStart="0dp"
         android:paddingEnd="16dp"
         android:paddingBottom="16dp"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="#595959"
         tools:text="Configuration for your device lol" />
 
 </RelativeLayout>
