@@ -1,6 +1,7 @@
 package com.tigro.lajoie.screens.wall
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ class WallDetailFragment : Fragment() {
     private val wallDetailViewModel: WallViewModel by activityViewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
     private val args: WallDetailFragmentArgs by navArgs()
-    private val wallId = 0
+    private var wallId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +42,7 @@ class WallDetailFragment : Fragment() {
         }
 
         val index = args.knowledgeIndex
-        val wallId = wallDetailViewModel.wallData.value!![index].id
+        wallId = wallDetailViewModel.wallData.value!![index].id
 
         wallDetailViewModel.getResponses(authViewModel.token.value!!, wallId)
 
