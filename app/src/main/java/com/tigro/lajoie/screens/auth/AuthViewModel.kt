@@ -35,7 +35,7 @@ class AuthViewModel : ViewModel() {
                             email.value.toString(), password.value.toString()
                         )
                     )
-                _token.value = user.token
+                _token.value = user.token!!
                 _user.value = user
                 _status.value = ApiStatus.SUCCESS
             } catch (e: Exception) {
@@ -55,8 +55,10 @@ class AuthViewModel : ViewModel() {
                     )
 
                 _user.value = user
+                _status.value = ApiStatus.SUCCESS
             } catch (e: Exception) {
                 Log.d("Error", e.message.toString())
+                _status.value = ApiStatus.FAILED
             }
         }
     }

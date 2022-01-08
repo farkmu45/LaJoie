@@ -2,9 +2,8 @@
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/md_theme_dark_onSecondary</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.LaJoie</item>
-        # Required.
     </style>
 
     <style name="Theme.LaJoie" parent="Theme.Material3.Dark.NoActionBar">
@@ -35,8 +34,22 @@
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
 
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
+
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/AppBarFont</item>
+    </style>
+
+
+    <style name="AppBarFont" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:letterSpacing">-0.04</item>
     </style>
 </resources>

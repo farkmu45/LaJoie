@@ -1,8 +1,51 @@
 <resources>
     <string name="app_name">LaJoie</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
     <string name="uploadcare_public_key" translatable="false">574887dd15eae2ede6e6</string>
-    <string name="uploadcare_private_key" translatable="false">62ecefc595036cc43f33</string>
+    <string name="uploadcare_private_key" translatable="false">28d311332885a103f47c</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wall_greeting">Hello %1$s!!</string>
+    <string name="wall_subgreeting">Any question for today?</string>
+    <string name="wall_fab">Ask Question</string>
+    <string name="login_welcome">Welcome</string>
+    <string name="login_sub">Before you use this app, please login</string>
+    <string name="login_error">Account not found, please login again</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_login">Login</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="register_failed">Register failed</string>
+    <string name="register">Register</string>
+    <string name="history_display">History</string>
+    <string name="wall_create_display">Ask Question</string>
+    <string name="wall_create_helper">Questions will be displayed after approval by the admin, usually it takes up to 1x24 hours</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_question_details">Question Details</string>
+    <string name="wall_create_button">Send</string>
+    <string name="submission_display">Submission</string>
+    <string name="hint_experience">Tell your experience here</string>
+    <string name="hint_document">Upload your document</string>
+    <string name="hint_file">Choose file</string>
+    <string name="submission_btn">Send</string>
+    <string name="progress_text">Please wait..</string>
+    <string name="send_comment">Send comment</string>
+    <string name="history">history</string>
+    <string name="expert">Expert</string>
+    <string name="wall_failed">A problem occurred, please check your network connection</string>
+    <string name="comment_failed">A problem occurred while sending your comment, please try again</string>
+    <string name="comment_success">Comment sent successfully</string>
+    <string name="wall_create_success">Question successfully sent</string>
+    <string name="wall_create_failed">There\'s a problem while sending your question</string>
+    <string name="submission_failed">There\'s an error while sending your submission</string>
+    <string name="submission_confirmation">Confirmation</string>
+    <string name="submission_confirmation_text">You can\'t use your account until your submission is reviewed, are you sure?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="submission_success">Your submission successfully sent, you will be logged out once you click \'Yes\'</string>
+    <string name="knowledge_failed">There\'s a problem while getting knowledge data, please try again</string>
+    <string name="knowledge_category_failed">Failed retrieving data, please try again</string>
+    <string name="knowledge_picture">Knowledge Picture</string>
 </resources>

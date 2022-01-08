@@ -12,7 +12,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tigro.lajoie.MainActivity
 import com.tigro.lajoie.adapters.AccountAdapter
 import com.tigro.lajoie.databinding.FragmentAccountBinding
-import com.tigro.lajoie.models.accountScreenData
+import com.tigro.lajoie.models.expertScreenData
+import com.tigro.lajoie.models.regularScreenData
 import com.tigro.lajoie.screens.auth.AuthViewModel
 
 class AccountFragment : Fragment() {
@@ -34,8 +35,10 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val screenData =
+            if (authViewModel.user.value!!.type == 1) regularScreenData else expertScreenData
         binding.apply {
-            recyclerAccount.adapter = AccountAdapter(accountScreenData) {
+            recyclerAccount.adapter = AccountAdapter(screenData) {
                 MaterialAlertDialogBuilder(context!!)
                     .setTitle("Logout")
                     .setMessage("Are you sure you want to logout?")

@@ -24,26 +24,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical"
             android:padding="16dp"
             android:paddingBottom="8dp">
-
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:text="Hello" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_url="https://assets4.lottiefiles.com/private_files/lf30_opufui0k.json" />
+                app:lottie_rawRes="@raw/consultation" />
+
+            <TextView
+                style="@style/DisplaySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/login_welcome" />
+
+            <TextView
+                style="@style/BodyLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/login_sub" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -55,7 +59,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
                     android:onTextChanged="@{() -> viewModel.clearError()}"
                     android:text="@={viewModel.email}" />
@@ -73,7 +77,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/hint_password"
                     android:inputType="textPassword"
                     android:text="@={viewModel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -82,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Account not found, please login again"
+                android:text="@string/login_error"
                 android:visibility="@{viewModel.status == ApiStatus.FAILED ? View.VISIBLE : View.GONE}" />
 
             <LinearLayout
@@ -98,16 +102,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-                    android:text="Register" />
+                    android:text="@string/btn_register" />
 
                 <Button
                     android:id="@+id/login_btn"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_weight="1"
                     android:enabled="@{viewModel.email.trim().empty || viewModel.password.trim().empty ? false : true}"
-                    android:text="Login" />
+                    android:text="@string/btn_login" />
 
             </LinearLayout>
 

@@ -1,7 +1,6 @@
 package com.tigro.lajoie.screens.wall
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentWallCreateBinding
-import com.tigro.lajoie.utils.ApiStatus
 import com.tigro.lajoie.screens.auth.AuthViewModel
+import com.tigro.lajoie.utils.ApiStatus
 
 class WallCreateFragment : Fragment() {
     private lateinit var binding: FragmentWallCreateBinding
@@ -38,28 +38,32 @@ class WallCreateFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
         val dialog: AlertDialog =
-            MaterialAlertDialogBuilder(context!!).setMessage("Submitting...").create()
+            MaterialAlertDialogBuilder(context!!).setCancelable(false).setView(R.layout.progress)
+                .create()
 
         wallViewModel.status.observe(viewLifecycleOwner, {
             when {
                 it.equals(ApiStatus.SUCCESS) -> {
                     dialog.dismiss()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.wall_create_success),
+                        Toast.LENGTH_LONG
+                    ).show()
                     findNavController().navigate(R.id.action_wallCreateFragment_to_wallFragment)
-                    Toast.makeText(context, "Question sent", Toast.LENGTH_LONG).show()
                 }
                 it.equals(ApiStatus.FAILED) -> {
                     dialog.dismiss()
-                    Toast.makeText(
-                        context,
-                        "There's a problem submitting your question",
-                        Toast.LENGTH_LONG
+                    Snackbar.make(
+                        view,
+                        getString(R.string.wall_create_failed),
+                        Snackbar.LENGTH_SHORT
                     ).show()
                 }
             }
         })
 
         binding.btnSend.setOnClickListener {
-            Log.d("Token", authViewModel.token.toString())
             wallViewModel.sendQuestion(authViewModel.token.value.toString())
             dialog.show()
         }

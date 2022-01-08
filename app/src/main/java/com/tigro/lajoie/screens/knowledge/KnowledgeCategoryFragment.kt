@@ -1,17 +1,15 @@
 package com.tigro.lajoie.screens.knowledge
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.snackbar.Snackbar
 import com.tigro.lajoie.R
 import com.tigro.lajoie.adapters.KnowledgeCategoryAdapter
 import com.tigro.lajoie.databinding.FragmentKnowledgeCategoryBinding
@@ -28,31 +26,43 @@ class KnowledgeCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentKnowledgeCategoryBinding.inflate(inflater, container, false)
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = knowledgeViewModel
+        }
+        knowledgeViewModel.getDetails(args.knowledgeId)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-        toolbar.setupWithNavController(findNavController())
-
-        binding.toolbar.title = args.knowledgeName
-
         binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = knowledgeViewModel
-        }
+            toolbar.setupWithNavController(findNavController())
+            toolbar.title = args.knowledgeName
 
-        knowledgeViewModel.getDetails(args.knowledgeId)
-
-        knowledgeViewModel.status.observe(viewLifecycleOwner, {
-            if (it.equals(ApiStatus.SUCCESS)) {
-                binding.recycler.adapter =
-                    KnowledgeCategoryAdapter(knowledgeViewModel.knowledgeDetailData.value!!)
-            } else if(it.equals(ApiStatus.FAILED)) {
-                Log.d("DATA", knowledgeViewModel.knowledgeDetailData.value!![1].name)
+            knowledgeCategoryRefresh.setOnRefreshListener {
+                knowledgeViewModel.getDetails(args.knowledgeId)
             }
-        })
+
+            knowledgeViewModel.status.observe(viewLifecycleOwner, {
+                if (it.equals(ApiStatus.SUCCESS)) {
+                    recycler.adapter =
+                        KnowledgeCategoryAdapter(knowledgeViewModel.knowledgeDetailData.value!!)
+                    knowledgeCategoryRefresh.isRefreshing = false
+                    categoryLoading.visibility = View.GONE
+                } else if (it.equals(ApiStatus.FAILED)) {
+                    knowledgeCategoryRefresh.isRefreshing = false
+                    categoryLoading.visibility = View.GONE
+                    Snackbar.make(
+                        view,
+                        getString(R.string.knowledge_category_failed),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
     }
 }

@@ -7,6 +7,6 @@ data class User(
     val username: String,
     val name: String,
     val status: String,
-    val picture: String,
+    val picture: String?,
     @Json(name = "user_type_id") val type: Int
 )

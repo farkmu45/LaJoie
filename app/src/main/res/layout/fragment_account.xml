@@ -62,11 +62,11 @@
                     android:checked="true"
                     android:clickable="false"
                     android:focusable="false"
-                    android:text="Expert"
+                    android:text="@string/expert"
                     app:isShownIfExpert="@{viewModel.user.type}" />
 
                 <TextView
-
+                    style="@style/TitleMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -74,11 +74,12 @@
                     tools:text="Faruk Maulana" />
 
                 <TextView
+                    style="@style/BodyLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="farkmu45"
-                    tools:text="@{viewModel.user.username}" />
+                    android:text="@{viewModel.user.username}"
+                    tools:text="farkmu45" />
 
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -10,9 +10,9 @@
             name="viewModel"
             type="com.tigro.lajoie.screens.knowledge.KnowledgeViewModel" />
 
-      <variable
-          name="knowledgeIndex"
-          type="Integer" />
+        <variable
+            name="knowledgeIndex"
+            type="Integer" />
 
         <import type="android.view.View" />
     </data>
@@ -36,7 +36,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fillViewport="true"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -44,10 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="16dp">
 
                 <TextView
-                    style="@style/TextAppearance.Material3.DisplayMedium"
+                    style="@style/DisplaySmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.knowledgeDetailData[knowledgeIndex].name}"
@@ -55,15 +55,17 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Apa itu psikologi" />
 
-                <TextView
-                    style="@style/TextAppearance.Material3.BodyLarge"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/knowledge_detail"
+                    style="@style/BodyLarge"
                     android:layout_width="match_parent"
+                    app:lineHeight="23sp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@{viewModel.knowledgeDetailData[knowledgeIndex].text}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Lorem ipsum dolor sit amet dsafkjaslfk" />
+                    app:renderHtml="@{viewModel.knowledgeDetailData[knowledgeIndex].text}"
+                    tools:text="Lorem ipsum dolor sit amet dsafkjaslfk dsafljsd afjlads flasjf lsdkjf saldjflksad fjlsdkaf jdsfadsjlkf sdjflkdsa f" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

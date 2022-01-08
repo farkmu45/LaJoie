@@ -1,5 +1,8 @@
 package com.tigro.lajoie
 
+import android.graphics.Color
+import android.os.Build
+import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -103,5 +106,53 @@ fun isExpert(view: View, type: Int) {
         view.visibility = View.VISIBLE
     } else {
         view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter("isShownIfRegular")
+fun isRegular(view: View, type: Int) {
+    if (type == 1) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter("historyIcon")
+fun historyIcon(img: ImageView, status: String) {
+    when (status) {
+        "PENDING" -> {
+            img.setImageResource(R.drawable.ic_pending)
+        }
+        "APPROVED" -> {
+            img.setImageResource(R.drawable.ic_published)
+        }
+        "REJECTED" -> {
+            img.setImageResource(R.drawable.ic_rejected)
+        }
+    }
+}
+
+@BindingAdapter("historyColor")
+fun historyColor(text: TextView, status: String) {
+    var color = ""
+    when (status) {
+        "PENDING" -> {
+            color = "#4E8098"
+        }
+        "APPROVED" -> {
+            color = "#07C86B"
+        }
+        "REJECTED" -> {
+            color = "#FA0000"
+        }
+    }
+    text.setTextColor(Color.parseColor(color))
+}
+
+@BindingAdapter("renderHtml")
+fun renderHtml(textView: TextView, html: String) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        textView.text = Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT)
     }
 }

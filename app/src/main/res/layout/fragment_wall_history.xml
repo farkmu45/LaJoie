@@ -59,36 +59,26 @@
 
                 <TextView
                     android:id="@+id/history"
-                    style="@style/TextAppearance.Material3.HeadlineMedium"
+                    style="@style/DisplaySmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="30dp"
-                    android:text="History"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/history_display"
                     android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/history_last_updated"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Last updated 3 mins ago"
-                    android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/history" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    app:listHistory="@{viewModel.historyData}"
+                    android:layout_marginTop="35dp"
                     android:nestedScrollingEnabled="false"
                     android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/history_last_updated"
+                    app:layout_constraintTop_toBottomOf="@id/history"
+                    app:listHistory="@{viewModel.historyData}"
                     tools:listitem="@layout/history_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentRegisterBinding
@@ -25,13 +27,20 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val loadingDialog: AlertDialog =
+            MaterialAlertDialogBuilder(context!!).setCancelable(false).setView(R.layout.progress)
+                .create()
+
         binding.toolbar.setupWithNavController(findNavController())
+
 
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -52,7 +61,10 @@ class RegisterFragment : Fragment() {
 
             status.observe(viewLifecycleOwner, {
                 if (it.equals(ApiStatus.SUCCESS)) {
+                    loadingDialog.dismiss()
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                } else if (it.equals(ApiStatus.FAILED)) {
+                    loadingDialog.dismiss()
                 }
             })
         }
@@ -64,6 +76,7 @@ class RegisterFragment : Fragment() {
         }
 
         binding.registerBtn.setOnClickListener {
+            loadingDialog.show()
             registerViewModel.register()
         }
     }

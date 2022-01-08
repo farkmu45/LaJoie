@@ -13,7 +13,8 @@
             type="com.tigro.lajoie.screens.auth.RegisterFragment" />
 
         <import type="android.view.View" />
-        <import type="com.tigro.lajoie.utils.ApiStatus"/>
+
+        <import type="com.tigro.lajoie.utils.ApiStatus" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,7 +60,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Name"
+                        android:hint="@string/hint_name"
                         android:inputType="textPersonName"
                         android:text="@={viewModel.fullname}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -75,7 +76,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Email"
+                        android:hint="@string/hint_email"
                         android:inputType="textEmailAddress"
                         android:text="@={viewModel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +92,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Username"
+                        android:hint="@string/hint_username"
                         android:inputType="text"
                         android:text="@={viewModel.username}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +108,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Password"
+                        android:hint="@string/hint_password"
                         android:inputType="textPassword"
                         android:text="@={viewModel.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -122,7 +123,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Confirm Password"
+                        android:hint="@string/hint_confirm_password"
                         android:inputType="textPassword"
                         android:text="@={viewModel.confirmPassword}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -130,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Login failed"
+                    android:text="@string/register_failed"
                     android:visibility="@{viewModel.status == ApiStatus.FAILED ? View.VISIBLE : View.GONE}" />
 
                 <Button
@@ -139,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:enabled="@{viewModel.isValid}"
-                    android:text="Register" />
+                    android:text="@string/register" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

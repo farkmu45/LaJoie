@@ -15,7 +15,6 @@ import com.tigro.lajoie.utils.ApiStatus
 import kotlinx.coroutines.launch
 
 class WallViewModel() : ViewModel() {
-
     private val _wallData = MutableLiveData<List<Wall>>()
     val wallData: LiveData<List<Wall>> = _wallData
 

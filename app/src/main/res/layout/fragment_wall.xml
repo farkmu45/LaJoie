@@ -10,6 +10,10 @@
             name="viewModel"
             type="com.tigro.lajoie.screens.wall.WallViewModel" />
 
+        <variable
+            name="userViewModel"
+            type="com.tigro.lajoie.screens.auth.AuthViewModel" />
+
         <import type="android.view.View" />
 
         <import type="com.tigro.lajoie.utils.ApiStatus" />
@@ -19,71 +23,86 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbar_container"
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/wall_refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:menu="@menu/wall_options"
-                app:title="Wall" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                tools:context=".screens.wall.WallFragment">
+                android:fillViewport="true"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/loading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminate="true"
-                    android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <TextView
-                    android:id="@+id/greet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hello Fark!"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler"
-
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="60dp"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/greet"
-                    app:listWall="@{viewModel.wallData}"
-                    tools:listitem="@layout/wall_item" />
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    tools:context=".screens.wall.WallFragment">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/wall_loading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/history_btn"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="12dp"
+                        android:clickable="true"
+                        android:contentDescription="@string/history"
+                        android:focusable="true"
+                        android:src="@drawable/ic_history"
+                        app:isShownIfRegular="@{userViewModel.user.type}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
+                    <TextView
+                        android:id="@+id/greet"
+                        style="@style/HeadlineMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Hello fark" />
+
+                    <TextView
+                        android:id="@+id/greet_sub"
+                        style="@style/BodyLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wall_subgreeting"
+                        android:visibility="@{viewModel.status == ApiStatus.SUCCESS ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/greet" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/greet_sub"
+                        app:listWall="@{viewModel.wallData}"
+                        tools:listitem="@layout/wall_item" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/add_btn"
@@ -91,11 +110,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="24dp"
-            android:text="Ask Question"
-            android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.INVISIBLE : View.VISIBLE}"
+            android:text="@string/wall_fab"
+            android:visibility="@{viewModel.status == ApiStatus.SUCCESS ? View.VISIBLE : View.INVISIBLE}"
             app:icon="@drawable/ic_add"
+            app:isShownIfRegular="@{userViewModel.user.type}"
             app:layout_anchorGravity="bottom|right|end"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

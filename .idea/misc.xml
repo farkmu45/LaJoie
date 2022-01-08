@@ -22,28 +22,30 @@
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.26264591439688717" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25677083333333334" />
-        <entry key="app/src/main/res/layout/fragment_knowledge.xml" value="0.1859375" />
+        <entry key="app/src/main/res/layout/fragment_knowledge.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_knowledge_category.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_knowledge_detail.xml" value="0.25677083333333334" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_knowledge_detail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_new_question.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_new_wall.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25677083333333334" />
-        <entry key="app/src/main/res/layout/fragment_submission.xml" value="0.2421875" />
-        <entry key="app/src/main/res/layout/fragment_wall.xml" value="0.2516753536857781" />
+        <entry key="app/src/main/res/layout/fragment_submission.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_wall.xml" value="0.291371158392435" />
         <entry key="app/src/main/res/layout/fragment_wall_create.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_detail.xml" value="0.2635416666666667" />
         <entry key="app/src/main/res/layout/fragment_wall_draft.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_wall_draft_detail.xml" value="0.25677083333333334" />
-        <entry key="app/src/main/res/layout/fragment_wall_history.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/fragment_wall_history.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_wall_sent.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/history_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/knowledge_item.xml" value="0.25677083333333334" />
-        <entry key="app/src/main/res/layout/material_list_item_two_line.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/material_list_item_two_line.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/progress.xml" value="0.67" />
         <entry key="app/src/main/res/layout/wall_fragment.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/wall_item.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/menu/wall_options.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.27291666666666664" />
       </map>
     </option>
   </component>

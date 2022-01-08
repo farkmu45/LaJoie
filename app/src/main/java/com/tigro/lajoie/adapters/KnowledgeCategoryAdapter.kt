@@ -1,10 +1,14 @@
 package com.tigro.lajoie.adapters
 
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tigro.lajoie.R
@@ -26,19 +30,25 @@ class KnowledgeCategoryAdapter(private val dataSet: List<KnowledgeDetail>) :
         return KnowledgeCategoryViewHolder((knowledgeCategoryLayout))
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: KnowledgeCategoryViewHolder, position: Int) {
-        var subtitle = dataSet[position].text
+        val subtitle = dataSet[position].text
+        var rendered = Html.fromHtml(subtitle, Html.FROM_HTML_MODE_COMPACT)
 
-        if (subtitle.length > 80) {
-            subtitle = dataSet[position].text.take(80) + "..."
+
+        if (rendered.length > 80) {
+            rendered = rendered.take(80) as Spanned?
         }
 
-
         holder.title.text = dataSet[position].name
-        holder.subtitle.text = subtitle
+        holder.subtitle.text = rendered
 
         holder.card.setOnClickListener {
-            it.findNavController().navigate(KnowledgeCategoryFragmentDirections.actionKnowledgeCategoryToKnowledgeDetailFragment(position))
+            it.findNavController().navigate(
+                KnowledgeCategoryFragmentDirections.actionKnowledgeCategoryToKnowledgeDetailFragment(
+                    position
+                )
+            )
         }
     }
 

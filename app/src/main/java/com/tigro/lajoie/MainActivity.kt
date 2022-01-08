@@ -9,6 +9,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.transition.MaterialFadeThrough
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +28,11 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
+        bottomNavigationView.setOnItemReselectedListener { item ->
+            val reselectedDestinationId = item.itemId
+            navController.popBackStack(reselectedDestinationId, inclusive = false)
+        }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {

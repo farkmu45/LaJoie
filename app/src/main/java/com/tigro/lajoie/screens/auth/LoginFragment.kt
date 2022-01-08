@@ -2,10 +2,10 @@ package com.tigro.lajoie.screens.auth
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -23,6 +23,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         if (checkLogin()) {
             authViewModel.setToken(getToken())
             authViewModel.setProfile(getToken())
@@ -35,6 +36,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val loadingDialog: AlertDialog =
+            MaterialAlertDialogBuilder(context!!).setCancelable(false).setView(R.layout.progress)
+                .create()
+
+
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = authViewModel
@@ -42,6 +48,7 @@ class LoginFragment : Fragment() {
 
         authViewModel.status.observe(viewLifecycleOwner, {
             if (it.equals(ApiStatus.SUCCESS)) {
+                loadingDialog.dismiss()
                 if (authViewModel.user.value!!.status == "SUSPENDED") {
                     MaterialAlertDialogBuilder(context!!)
                         .setTitle("Login failed")
@@ -52,7 +59,8 @@ class LoginFragment : Fragment() {
                     saveToken(authViewModel.token.value.toString())
                     findNavController().navigate(R.id.action_loginFragment_to_wallFragment)
                 }
-
+            } else if (it.equals(ApiStatus.FAILED)) {
+                loadingDialog.dismiss()
             }
         })
 
@@ -62,6 +70,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginBtn.setOnClickListener {
+            loadingDialog.show()
             authViewModel.login()
         }
     }

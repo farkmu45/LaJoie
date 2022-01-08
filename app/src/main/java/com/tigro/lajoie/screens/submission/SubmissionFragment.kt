@@ -15,10 +15,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tigro.lajoie.MainActivity
+import com.tigro.lajoie.R
 import com.tigro.lajoie.databinding.FragmentSubmissionBinding
 import com.tigro.lajoie.screens.auth.AuthViewModel
 import com.tigro.lajoie.utils.ApiStatus
-import com.uploadcare.android.widget.controller.FileType
 import com.uploadcare.android.widget.controller.UploadcareWidget
 import com.uploadcare.android.widget.controller.UploadcareWidgetResult
 
@@ -44,21 +44,22 @@ class SubmissionFragment : Fragment() {
         val token = authViewModel.token.value.toString()
 
         val dialog: AlertDialog =
-            MaterialAlertDialogBuilder(context!!).setMessage("Submitting...").create()
+            MaterialAlertDialogBuilder(context!!).setCancelable(false).setView(R.layout.progress)
+                .create()
 
         val confirmationDialog = MaterialAlertDialogBuilder(context!!)
-            .setTitle("Confirmation")
-            .setMessage("You can't use your account until your submission is reviewed, are you sure?")
-            .setNegativeButton("No") { _, _ ->
+            .setTitle(getString(R.string.submission_confirmation))
+            .setMessage(getString(R.string.submission_confirmation_text))
+            .setNegativeButton(getString(R.string.no)) { _, _ ->
             }
-            .setPositiveButton("Yes") { _, _ ->
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 submissionViewModel.sendSubmission(token)
                 dialog.show()
             }.create()
 
         val successDialog =
-            MaterialAlertDialogBuilder(context!!).setMessage("Your submission succesfully sent, you will be logged out once you click ok")
-                .setPositiveButton("Yes") { _, _ ->
+            MaterialAlertDialogBuilder(context!!).setMessage(getString(R.string.submission_success))
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     logout()
                 }.create()
 
@@ -80,7 +81,7 @@ class SubmissionFragment : Fragment() {
                     dialog.dismiss()
                     Toast.makeText(
                         context,
-                        "There's an error while sending your submission",
+                        getString(R.string.submission_failed),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -109,7 +110,6 @@ class SubmissionFragment : Fragment() {
         val fragment = this
         UploadcareWidget.getInstance()
             .selectFile(fragment)
-            .fileType(FileType.image)
             .launch()
     }
 

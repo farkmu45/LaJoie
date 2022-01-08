@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.tigro.lajoie.R
 import com.tigro.lajoie.adapters.WallAdapter
 import com.tigro.lajoie.databinding.FragmentWallBinding
 import com.tigro.lajoie.screens.auth.AuthViewModel
+import com.tigro.lajoie.utils.ApiStatus
 
 class WallFragment : Fragment() {
 
@@ -24,17 +25,18 @@ class WallFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         if (wallViewModel.wallData.value.isNullOrEmpty()) {
             wallViewModel.getData(authViewModel.token.value.toString())
         }
+
         binding = FragmentWallBinding.inflate(inflater)
-        binding.viewModel = wallViewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
         val wallAdapter = WallAdapter()
-
-        binding.recycler.adapter = wallAdapter
+        binding.apply {
+            viewModel = wallViewModel
+            userViewModel = authViewModel
+            lifecycleOwner = viewLifecycleOwner
+            recycler.adapter = wallAdapter
+        }
 
         return binding.root
     }
@@ -42,21 +44,41 @@ class WallFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.addBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_wallFragment_to_newQuestionFragment)
-        }
-
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.history -> {
-                    findNavController().navigate(R.id.action_wallFragment_to_wallDraftFragment)
-                    true
-                }
-                else -> {
-                    false
-                }
+        authViewModel.status.observe(viewLifecycleOwner, {
+            if (it.equals(ApiStatus.SUCCESS)) {
+                binding.greet.text =
+                    getString(R.string.wall_greeting, authViewModel.user.value!!.username)
             }
-        }
+        })
 
+        binding.apply {
+
+            wallRefresh.setOnRefreshListener {
+                wallViewModel.getData(authViewModel.token.value.toString())
+            }
+
+            addBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_wallFragment_to_newQuestionFragment)
+            }
+
+            historyBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_wallFragment_to_wallDraftFragment)
+            }
+
+            wallViewModel.status.observe(viewLifecycleOwner, {
+                if (it.equals(ApiStatus.SUCCESS)) {
+                    wallRefresh.isRefreshing = false
+                    wallLoading.visibility = View.GONE
+                } else if (it.equals(ApiStatus.FAILED)) {
+                    wallRefresh.isRefreshing = false
+                    wallLoading.visibility = View.GONE
+                    Snackbar.make(
+                        view,
+                        getString(R.string.wall_failed),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
     }
 }

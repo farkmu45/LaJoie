@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,7 +12,7 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".screens.wall.WallCreateFragment">
@@ -19,44 +20,43 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
                 tools:title="test" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_container">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="70dp">
 
                 <TextView
                     android:id="@+id/menu_title"
-                    style="@style/TextAppearance.AppCompat.Display2"
+                    style="@style/DisplaySmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ask Question" />
+                    android:text="@string/wall_create_display" />
 
                 <TextView
-                    style="@style/TextAppearance.AppCompat.Body2"
+                    style="@style/BodyLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Questions will be displayed after approval by the admin, usually it takes up to 1x24 hours" />
+                    android:text="@string/wall_create_helper" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Title"
+                        android:hint="@string/hint_title"
                         android:text="@={viewModel.title}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +80,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="top"
-                        android:hint="Question Details"
+                        android:hint="@string/hint_question_details"
                         android:inputType="textMultiLine"
                         android:text="@={viewModel.detail}" />
 
@@ -93,15 +93,15 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="16dp"
                     android:enabled="@{viewModel.title.trim().empty || viewModel.detail.trim().empty ? false : true}"
-                    android:text="Send"
+                    android:text="@string/wall_create_button"
                     app:icon="@drawable/ic_send"
                     app:iconGravity="end" />
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
 
 

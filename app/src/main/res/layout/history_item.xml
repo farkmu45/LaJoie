@@ -22,6 +22,7 @@
 
         <TextView
             android:id="@+id/history_title"
+            style="@style/TitleMedium"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -32,6 +33,7 @@
 
         <TextView
             android:id="@+id/history_detail"
+            style="@style/BodyMedium"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -41,12 +43,24 @@
             app:layout_constraintTop_toBottomOf="@id/history_title"
             tools:text="Lorem ipsum dolor sit amefdsafjdsa dsaf jsdf sadsadsa" />
 
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="7dp"
+            android:importantForAccessibility="no"
+            app:historyIcon="@{history.status}"
+            app:layout_constraintBottom_toBottomOf="@id/history_status"
+            app:layout_constraintEnd_toStartOf="@id/history_status"
+            app:layout_constraintTop_toTopOf="@id/history_status"
+            tools:src="@drawable/ic_published" />
 
         <TextView
             android:id="@+id/history_status"
+            style="@style/TitleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{history.status}"
+            app:historyColor="@{history.status}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
