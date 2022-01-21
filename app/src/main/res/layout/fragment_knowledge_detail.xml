@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="24dp">
 
                 <TextView
                     style="@style/DisplaySmall"
@@ -59,7 +59,7 @@
                     android:id="@+id/knowledge_detail"
                     style="@style/BodyLarge"
                     android:layout_width="match_parent"
-                    app:lineHeight="23sp"
+                    app:lineHeight="28sp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
