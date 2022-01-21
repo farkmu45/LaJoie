@@ -111,7 +111,6 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="24dp"
             android:text="@string/wall_fab"
-            android:visibility="@{viewModel.status == ApiStatus.SUCCESS ? View.VISIBLE : View.INVISIBLE}"
             app:icon="@drawable/ic_add"
             app:isShownIfRegular="@{userViewModel.user.type}"
             app:layout_anchorGravity="bottom|right|end"
